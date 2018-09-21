@@ -1,41 +1,55 @@
 <div class="col-md-6">
-  <h2 class="text-center">Edit User</h2>
+  <mat-card-title class="text-center">Edit User</mat-card-title>
+  <mat-card-content>
   <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="email">Email address:</label>
-      <input type="email" formControlName="email" placeholder="Email" name="email" class="form-control" id="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
-      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-        <div *ngIf="f.email.errors.required">Email is required</div>
-        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
-      </div>
+      <mat-label for="email">Email address: </mat-label>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" type="email" formControlName="email"  name="email" class="form-control" id="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <mat-error *ngIf="editForm.get('email').hasError('required')">Email is required</mat-error>
+          <mat-error *ngIf="!editForm.get('email').valid && editForm.get('email').touched">Email must be a valid email address</mat-error>
+        </div>
+      </mat-form-field>
+
     </div>
 
     <div class="form-group">
-      <label for="firstName">First Name:</label>
-      <input formControlName="firstName" placeholder="First Name" name="firstName" class="form-control" id="firstName">
+      <mat-label for="firstName">First Name:</mat-label>
+      <mat-form-field class="example-full-width">
+      <input matInput formControlName="firstName" placeholder="First Name" name="firstName" class="form-control" id="firstName">
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group">
+      <mat-label for="lastName">Last Name:</mat-label>
+      <mat-form-field class="example-full-width">
+      <input matInput formControlName="lastName" placeholder="Last name" name="lastName" class="form-control" id="lastName">
+      </mat-form-field>
     </div>
 
     <div class="form-group">
-      <label for="lastName">Last Name:</label>
-      <input formControlName="lastName" placeholder="Last name" name="lastName" class="form-control" id="lastName">
+      <mat-label for="username">Username:</mat-label>
+      <mat-form-field class="example-full-width">
+      <input matInput formControlName="username" placeholder="Username" name="username" class="form-control" id="username">
+        </mat-form-field>
     </div>
 
     <div class="form-group">
-      <label for="username">Username:</label>
-      <input formControlName="username" placeholder="Username" name="username" class="form-control" id="username">
-    </div>
-
-    <div class="form-group">
-      <label for="age">Age:</label>
-      <input formControlName="age" placeholder="Age" name="age" class="form-control" id="age" [ngClass]="{ 'is-invalid': submitted && f.age.errors }" [(ngModel)]="ageModel">
+      <mat-label for="age">Age:</mat-label>
+      <mat-form-field class="example-full-width">
+      <input matInput formControlName="age" placeholder="Age" name="age" class="form-control" id="age" [ngClass]="{ 'is-invalid': submitted && f.age.errors }" [(ngModel)]="ageModel">
       <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
-        <div *ngIf="f.age.errors.required">Age is required</div>
-        <div *ngIf="f.age.errors.min">Age must be greater than 15</div>
-        <div *ngIf="f.age.errors.pattern">Input is not a valid number</div>
-        <div *ngIf="f.age.errors.max">{{ageModel}}? Are you serious?</div>
+        <mat-error *ngIf="editForm.get('age').hasError('required')">Age is required</mat-error>
+        <mat-error *ngIf="editForm.get('age').hasError('min')">Age must be greater than 15</mat-error>
+        <mat-error *ngIf="editForm.get('age').hasError('pattern')">Input is not a valid number</mat-error>
+        <mat-error *ngIf="editForm.get('age').hasError('max')">{{ageModel}}? Are you serious?</mat-error>
       </div>
+      </mat-form-field>
     </div>
 
-    <button class="btn btn-success">Update</button>
+    <button mat-raised-button color="primary" class="btn btn-success">Update</button>
   </form>
+    </mat-card-content>
 </div>

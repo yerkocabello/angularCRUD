@@ -1,29 +1,53 @@
-<div class="col-md-6">
+<div>
   <h2> User Details</h2>
-  <button class="btn btn-danger" (click)="addUser()"> Add User</button>
+  <mat-card-content>
+  <button mat-raised-button (click)="addUser()" color="primary"> Add User</button>
   <!--<app-root></app-root>-->
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th class="hidden">Id</th>
-      <th>Username</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Age</th>
-      <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let user of users">
-      <td class="hidden">{{users.indexOf(user)+1}}</td> <!--Se usa interpolacion para el data binding-->
-      <td>{{user.username}}</td>
-      <td>{{user.firstName}}</td>
-      <td>{{user.lastName}}</td>
-      <td>{{user.age}}</td>
-      <td><button class="btn btn-danger" (click)="deleteUser(user)"> Delete</button>
-        <button class="btn btn-danger" (click)="editUser(user)" style="margin-left: 20px;"> Edit</button></td>
-    </tr>
-    </tbody>
+  <table mat-table class="mat-elevation-z8" [dataSource]="users" width="80%">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{users.indexOf(user)+1}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.username}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="firstname">
+      <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.firstName}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="lastname">
+      <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.lastName}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="age">
+      <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.age}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        <button mat-icon-button color="primary" focusable="false" (click)="editUser(user)">Edit
+          <i class="fa fa-pencil mat-icon"></i>
+        </button>
+        <button mat-icon-button color="warn" focusable="false" (click)="deleteUser(user)">Delete
+          <i class="fa fa-times mat-icon"></i>
+        </button></mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </table>
-  <button class="btn btn-danger" (click)="logout()"> Logout</button>
+  <button mat-raised-button color="primary" (click)="logout()"> Logout</button>
+  </mat-card-content>
 </div>

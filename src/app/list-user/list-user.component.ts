@@ -14,6 +14,7 @@ import {AppComponent} from '../app.component';
 export class ListUserComponent implements OnInit {
 
   users: User[];
+  displayedColumns: string[] = ['id', 'username', 'firstname', 'lastname', 'age', 'action'];
 
   constructor(private router: Router, private userService: UserService, private appComponent: AppComponent) { }
 
@@ -52,6 +53,5 @@ export class ListUserComponent implements OnInit {
   logout(): void {
     this.appComponent.logout();
   }
-
 
 }
