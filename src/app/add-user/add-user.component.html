@@ -6,7 +6,7 @@
     <div class="form-group">
       <mat-label for="email">Email address: </mat-label>
       <mat-form-field class="example-full-width">
-      <input matInput type="email" formControlName="email" placeholder="Email" name="email" class="form-control" id="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" required>
+      <input matInput type="email" formControlName="email" placeholder="mail@domain.xx" name="email" class="form-control" id="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" required>
       <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
         <mat-error *ngIf="addForm.get('email').hasError('required')">Email is required</mat-error>
         <mat-error *ngIf="!addForm.get('email').valid && addForm.get('email').touched">Email must be a valid email address</mat-error>
@@ -51,7 +51,7 @@
     <div class="form-group">
       <mat-label for="age">Password: </mat-label>
       <mat-form-field class="example-full-width">
-      <input matInput formControlName="password" placeholder="Password" name="password" class="form-control" id="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" required>
+      <input matInput formControlName="password" placeholder="Alphanumeric, length 4-6" name="password" class="form-control" id="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" required>
       <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
         <mat-error *ngIf="addForm.get('password').hasError('required')">Password is required</mat-error>
         <mat-error *ngIf="addForm.get('password').hasError('minlength')">Password is too short</mat-error>
